@@ -1,0 +1,231 @@
+$main-font: Times New Roman, serif;
+$font-size: 14px;
+$font-color:#8d8d8d;
+$header-font: Tahoma, sans-serif;
+$header-color: #000;
+$default-padding: 20px;
+@mixin respond-to($media) {
+	@media only screen and (max-width:#{$media}) {
+		@content;
+	}
+}
+
+body {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	font-size: 0;
+}
+
+* {
+	box-sizing: border-box;
+}
+
+h1,
+h2,
+h3 {
+	font-family: $header-font;
+	color: $header-color;
+	font-weight: bold;
+	margin: 0;
+}
+
+a {
+	text-decoration: none;
+}
+
+.wrapper {
+	max-width: (842px+($default-padding*2));
+	width: 100%;
+	min-width: 320px;
+	padding: $default-padding;
+	margin: auto;
+	font-family: $main-font;
+	font-size: $font-size;
+	color: $font-color;
+}
+
+.header {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	align-items: center;
+	margin-bottom: $default-padding;
+	.nav {
+		@include respond-to(550px) {
+			position: relative;
+			&:hover .nav__ul {
+				display: block;
+			}
+		}
+		&__ul {
+			list-style: none;
+			padding: 0;
+			margin: 0;
+			display: flex;
+			flex-direction: row;
+			justify-content: space-between;
+			align-items: center;
+			font-family: $header-font;
+			font-weight: bold;
+			@include respond-to(550px) {
+				display: none;
+				position: absolute;
+				right: 0;
+				top: 20px;
+				background-color: rgba(255, 255, 255, 0.8);
+				padding: 10px;
+				width: 130px;
+			}
+			&__item {
+				display: block;
+				margin: 0 15px;
+				font-size: ($font-size+2);
+				&:last-child {
+					margin-right: 0
+				}
+				&:first-child {
+					margin-left: 0;
+				}
+				@include respond-to(550px) {
+					margin: 0;
+					padding: 5px;
+				}
+			}
+			&__link {
+				color: $header-color;
+				&:hover {
+					color: #da4137;
+					transition: 0.3s color;
+				}
+			}
+		}
+		&__icon {
+			display: none;
+			cursor: pointer;
+			@include respond-to(550px) {
+				display: block;
+				width: 25px;
+			}
+			&>div {
+				background-color: $header-color;
+				width: 20px;
+				height: 1px;
+				margin: 5px 0;
+			}
+		}
+	}
+}
+
+.main {
+	padding: $default-padding 30px;
+	background-color: #f0f0f0;
+	display: flex;
+	flex-flow: row wrap;
+	justify-content: center;
+	align-items: stretch;
+	@include respond-to(410px) {
+		padding: 0;
+		background-color: transparent;
+	}
+	&__img {
+		width: 50%;
+		padding-right: 10px;
+		max-height: 230px;
+		@include respond-to(600px) {
+			width: 70%;
+			min-width: 300px;
+			margin-bottom: 15px;
+		}
+		img {
+			box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.25);
+			width: 100%;
+		}
+	}
+	&__content {
+		width: 50%;
+		padding-left: 10px;
+		display: flex;
+		flex-direction: column;
+		align-items: flex-start;
+		justify-content: space-between;
+		@include respond-to(600px) {
+			width: 100%;
+		}
+		p {
+			margin: 0 0 10px;
+			;
+			font-size: $font-size;
+			line-height: 20px;
+		}
+	}
+	&__header {
+		font-size: 21px;
+		line-height: 28px;
+		margin-bottom: 10px;
+		margin-top: -5px;
+	}
+	&__btn {
+		font-family: $header-font;
+		font-size: 13px;
+		color: #fff;
+		border: 0;
+		border-radius: 3px;
+		padding: 8px 25px;
+		display: inline-block;
+		cursor: pointer;
+		background-color: #da4137;
+		background-image: -moz-linear-gradient( 90deg, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0) 100%);
+		background-image: -webkit-linear-gradient( 90deg, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0) 100%);
+		background-image: -ms-linear-gradient( 90deg, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0) 100%);
+		&:hover {
+			background-image: -webkit-linear-gradient(left, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0) 100%);
+			background-image: -o-linear-gradient(left, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0) 100%);
+			background-image: -ms-linear-gradient(to right, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0) 100%);
+		}
+	}
+}
+
+.article {
+	padding: $default-padding 0;
+	&__text {
+		margin: 0 0 $default-padding;
+		line-height: 20px;
+	}
+	&__header {
+		font-size: ($font-size+4);
+		line-height: 19px;
+		margin-bottom: 5px;
+	}
+	&__advantages {
+		display: flex;
+		flex-flow: row wrap;
+		justify-content: space-between;
+		align-items: center;
+		margin: 30px 0 30px;
+		@include respond-to(410px) {
+			flex-direction: column;
+			align-items: flex-start;
+		}
+	}
+	&__advantage {
+		display: flex;
+		flex-direction: row;
+		justify-content: center;
+		align-items: center;
+		margin: 0 10px 10px;
+		&__text {
+			font-size: $font-size;
+			font-style: italic;
+			line-height: 18px;
+			color: $header-color;
+			margin: 0 0 0 15px;
+		}
+		
+		@include respond-to(530px) {
+			&:nth-child(4){
+				margin-right: 40px;
+			}
+		}
+	}
+}
